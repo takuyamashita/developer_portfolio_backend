@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\Product as ResourcesProduct;
 use App\Models\Product;
 use App\Services\ProductService;
-use App\http\Requests\ProductStoreRequest;
+use App\Http\Requests\ProductStoreRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
