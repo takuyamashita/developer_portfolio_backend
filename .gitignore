@@ -9,6 +9,8 @@
 !/public/.htaccess
 !/public/web.config
 
+/resources/views/welcome.blade.php
+
 .env
 .env.backup
 .phpunit.result.cache
