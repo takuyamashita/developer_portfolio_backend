@@ -54,7 +54,7 @@ jobs:
 
     env:
       SSH_KEY: ${{ secrets.ID_RSA }}
-      SSH_USER: ${{ secrets.USER }}
+      SSH_USER: ${{ secrets.SSH_USER }}
       SSH_HOST: ${{ secrets.HOST }}
       SSH_PORT: ${{ secrets.PORT }}
       DEPLOY_COMMANDS: ${{ secrets.DEPLOY_COMMANDS }}
