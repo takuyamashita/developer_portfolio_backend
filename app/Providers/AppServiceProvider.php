@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 use App\Services\Admin;
 use App\Services\AdminAuthenticate;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Schema::defaultStringLength(191);
     }
 }
