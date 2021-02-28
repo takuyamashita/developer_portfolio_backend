@@ -75,5 +75,7 @@ jobs:
         run: |
           echo "$secrets.ID_RSA" > secret_key
           chmod 600 secret_key
+      - name: make deploy code
+        run: echo
       - name: deploy
         run: ssh -oStrictHostKeyChecking=no -i secret_key ${SSH_USER}@${SSH_HOST}
