@@ -67,6 +67,6 @@ jobs:
         run: composer install -n --prefer-dist
       - name: ssh_key copy
         run: |
-          echo "${{secrets.ID_RSA}}" >> secret_key
+          echo "${{ secrets.ID_RSA }}" > secret_key
           chmod 600 secret_key
           ssh -oStrictHostKeyChecking=no -i secret_key ${secrets.USER}@${secrets.HOST} ${secrets.DEPLOY_COMMANDS}
