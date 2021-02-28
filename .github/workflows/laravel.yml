@@ -53,7 +53,7 @@ jobs:
     if: github.ref == 'refs/heads/master'
 
     env:
-      ID_KEY: ${{ secrets.ID_RSA }}
+      SSH_KEY: ${{ secrets.ID_RSA }}
       SSH_USER: ${{ secrets.USER }}
       SSH_HOST: ${{ secrets.HOST }}
       SSH_PORT: ${{ secrets.PORT }}
@@ -74,7 +74,7 @@ jobs:
         run: composer install -n --prefer-dist
       - name: ssh_key copy
         run: |
-          echo "$secrets.ID_RSA" > secret_key
+          echo "$SSH_KEY" > secret_key
           chmod 600 secret_key
       - name: make deploy code
         run: echo
