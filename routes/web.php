@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Storage;
 Route::get('/{path}', function () {
     return view('welcome');
 })->where('path','^[a-zA-Z0-9_/]+$');
+Route::get('/', function () {
+    return view('welcome');
+})->where('path','^[a-zA-Z0-9_/]+$');
 
 Route::get('/image/public/product/image/{path}', function ($path) {
     //return Auth::check();
