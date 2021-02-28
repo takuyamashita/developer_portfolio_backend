@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// Route::middleware(['api'])->get('/test',function(Request $request){
+//     return 'ok';
+// });
+
+Route::prefix('admin')->middleware(['auth:sanctum'])->group(
+    function() {
+        Route::apiResources([
+            'product' => 'ProductController',
+        ]);
+    }
+);
+
+Route::apiResource('product', 'ProductController')->only(['index', 'show']);
+
+Route::post('login','AdminController@login');
+Route::middleware(['auth:sanctum'])->get('authenticate/is/admin','AdminController@check');
