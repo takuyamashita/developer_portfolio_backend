@@ -79,4 +79,4 @@ jobs:
       - name: make deploy code
         run: echo
       - name: deploy
-        run: ssh -oStrictHostKeyChecking=no -p $SSH_PORT -i secret_key $SSH_USER@$SSH_HOST $DEPLOY_COMMANDS
+        run: ssh -o StrictHostKeyChecking=no -p $SSH_PORT -i secret_key $SSH_USER@$SSH_HOST $DEPLOY_COMMANDS
