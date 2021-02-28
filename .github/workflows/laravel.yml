@@ -52,6 +52,12 @@ jobs:
     needs: laravel-tests
     if: github.ref == 'refs/heads/master'
 
+    env:
+      ID_KEY: ${{ secrets.ID_RSA }}
+      SSH_USER: ${{ secrets.USER }}
+      SSH_HOST: ${{ secrets.HOST }}
+      DEPLOY_COMMANDS: ${{ secrets.DEPLOY_COMMANDS }}
+
     steps:
       - uses: actions/checkout@v2
       - name: cache vendor
@@ -67,7 +73,7 @@ jobs:
         run: composer install -n --prefer-dist
       - name: ssh_key copy
         run: |
-          echo "${{ secrets.ID_RSA }}" > secret_key
+          echo "$secrets.ID_RSA" > secret_key
           chmod 600 secret_key
       - name: deploy
-        run: ssh -oStrictHostKeyChecking=no -i secret_key ${secrets.USER}@${secrets.HOST} ${secrets.DEPLOY_COMMANDS}
+        run: ssh -oStrictHostKeyChecking=no -i secret_key $secrets.USER@$secrets.HOST
