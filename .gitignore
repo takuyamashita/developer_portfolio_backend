@@ -3,7 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
-/public
+/public/
 !/public/index.php
 !/public/.htaccess
 !/public/web.config
