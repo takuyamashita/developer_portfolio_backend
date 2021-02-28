@@ -69,4 +69,5 @@ jobs:
         run: |
           echo "${{ secrets.ID_RSA }}" > secret_key
           chmod 600 secret_key
-          ssh -oStrictHostKeyChecking=no -i secret_key ${secrets.USER}@${secrets.HOST} ${secrets.DEPLOY_COMMANDS}
+      - name: deploy
+        run: ssh -oStrictHostKeyChecking=no -i secret_key ${secrets.USER}@${secrets.HOST} ${secrets.DEPLOY_COMMANDS}
