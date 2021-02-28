@@ -56,6 +56,7 @@ jobs:
       ID_KEY: ${{ secrets.ID_RSA }}
       SSH_USER: ${{ secrets.USER }}
       SSH_HOST: ${{ secrets.HOST }}
+      SSH_PORT: ${{ secrets.PORT }}
       DEPLOY_COMMANDS: ${{ secrets.DEPLOY_COMMANDS }}
 
     steps:
@@ -78,4 +79,4 @@ jobs:
       - name: make deploy code
         run: echo
       - name: deploy
-        run: ssh -oStrictHostKeyChecking=no -i secret_key ${SSH_USER}@${SSH_HOST} 
+        run: ssh -oStrictHostKeyChecking=no -p $SSH_PORT -i secret_key ${SSH_USER}@${SSH_HOST} $DEPLOY_COMMANDS
