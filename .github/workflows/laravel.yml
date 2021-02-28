@@ -45,3 +45,28 @@ jobs:
         run: php artisan migrate
       - name: unit test
         run: ./vendor/bin/phpunit
+
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    needs: laravel-tests
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: cache vendor
+        id: cache
+        uses: actions/cache@v1
+        with:
+          path: ./vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+      - name: composer install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: composer install -n --prefer-dist
+      - name: ssh_key copy
+        run: |
+          echo "${{secrets.ID_RSA}}" >> secret_key
+          chmod 600 secret_key
+          ssh -oStrictHostKeyChecking=no -i secret_key ${secrets.USER}@${secrets.HOST} ${secrets.DEPLOY_COMMANDS}
